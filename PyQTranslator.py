@@ -2,7 +2,7 @@
 
 from tkinter import *
 
-from .GUI.menubarGUI import *
+from qtdict.GUI.menubarGUI import *
 
 
 class PyQTranslator(Tk):

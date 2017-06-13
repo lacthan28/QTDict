@@ -4,15 +4,16 @@ import configparser
 
 def getFilePath():
 	import os
-	relative_path = 'pyqtranslator/configs.ini'
+	relative_path = '\\configs.ini'
 	current_dir = os.getcwd()
 	return os.path.join(current_dir, relative_path)
 
 
 class configsAction:
-	def __init__(self, master, parent, value):
+	def __init__(self, master = None, mainconfig = None, parent = None, value = None):
 		self.master = master
 		self.parent = parent
+		self.mainconfig = mainconfig
 		self.isFullscreenChecked = value
 		self.isFullscreen = False
 		self.config = configparser.ConfigParser()
@@ -38,7 +39,7 @@ class configsAction:
 		elif self.selection == 0:
 			self.config['THEME']['FullscreenMode'] = 'False'
 
-	def onOk(self):
+	def onApply(self):
 		try:
 			with open(getFilePath(), 'r') as file:
 				self.config.read(file)
@@ -49,4 +50,4 @@ class configsAction:
 			print(getFilePath())
 
 	def onCancel(self):
-		self.parent.destroy()
+		self.mainconfig.destroy()

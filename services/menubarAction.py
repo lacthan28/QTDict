@@ -6,6 +6,7 @@ from ..GUI.configsGUI import *
 
 class menubarAction:
 	def __init__(self, parent):
+		# self.master = master
 		self.parent = parent
 
 	# -----------------------------------------
@@ -16,7 +17,7 @@ class menubarAction:
 		pass
 
 	def menuOpen(self):
-		self.name = filedialog.askopenfilename(filetypes = (("Text File", "*.txt"), ("All Files", "*.*")),
+		self.name = filedialog.askopenfilename(filetypes = (("Config File", "*.ini"), ("All Files", "*.*")),
 		                                       title = 'Open file...')
 		try:
 			with open(self.name, 'r') as fileOpen:
@@ -26,7 +27,7 @@ class menubarAction:
 
 	def menuSave(self):
 		self.file = filedialog.asksaveasfile(mode = "w", defaultextension = ".txt",
-		                                     filetypes = (("Text File", "*.txt"), ("All Files", "*.*")))
+		                                     filetypes = (("Config File", "*.ini"), ("All Files", "*.*")))
 		if self.file is None:
 			return
 		text2save = "language=vi\nlocale=vn"
@@ -44,4 +45,4 @@ class menubarAction:
 	# -----------------------------------------
 
 	def mnuConfigs(self):
-		Configs(self.parent)
+		config = MainConfig(self.parent)
